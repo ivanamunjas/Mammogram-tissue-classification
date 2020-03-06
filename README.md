@@ -1,0 +1,7 @@
+# Mammogram-tissue-classification
+
+The database used for this project was the Mini-MIAS database which contains 322 images, of which 106 images have fatty tissue, 112 images have dense tissue and 104 images have grandular tissue. The first step is to go thorugh the images and remove outliers. The next step is to calculate ROIs (Region of interest) on all images. This can be done by using roi_selection.py. The ROI can be manually set on all images and automatically saved in a new directory. The size is standardize by the program to 256x256 pixels. 
+
+Once the ROIs are extracted, textural descriptors can be calculated. For every image textural descriptors are calculated based on: Gray Level Co-Occurrence matricies, Gray Level Run Length matricies, histograms and entropies. In total 34 features are calculated for each image. Given that most of the features carry the same information, their number is redused using Sequential Forward Selector (SFS). Its main task is to transform d-dimensional features space to k-dimensional space where k is chosen in advance. 
+
+Before classification it is necessary to standardize features. This is done by the sklearn's min-max scaler which scales all features to the range [0, 1]. After this, the k features chosen by SFS are used as an imput to machine learning algorithms. Algorithms used are: K-Nearest Neighbours, Suport Vector Machine, Naive Bayes Classifier, Random Forest and Neural Networks. 
